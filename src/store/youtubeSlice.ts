@@ -1,5 +1,6 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, current } from "@reduxjs/toolkit";
 import { InitialState } from "../Types";
+import { getHomePageVideos } from './reducers/getHomePageVideos';
 
 export const initialState: InitialState = {
     videos: [],
@@ -17,6 +18,11 @@ export const youtubeSlice = createSlice(
         reducers: {},
         extraReducers: ((builder) => {
 
+            builder.addCase(getHomePageVideos.fulfilled, (state, action) => {
+                // console.log(current(state));
+
+
+            })
         })
     }
 )

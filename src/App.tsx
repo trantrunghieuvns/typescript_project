@@ -1,5 +1,6 @@
 import React from 'react'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import { v4 as uuidv4 } from "uuid";
 
 import Home from './pages/Home';
 import Search from './pages/Search';
@@ -7,8 +8,8 @@ import Watch from './pages/Watch';
 
 export default function App() {
   return (
-    <BrowserRouter>
-      <Routes>
+    <BrowserRouter  >
+      <Routes  >
 
         <Route path='/search' element={<Search />} />
 

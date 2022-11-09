@@ -17,6 +17,7 @@ import {
 import { TbMusic, TbDeviceGamepad2 } from "react-icons/tb";
 import { FaRegCompass } from "react-icons/fa";
 import { GiFilmStrip } from "react-icons/gi";
+import { v4 as uuidv4 } from "uuid";
 
 export default function Sidebar() {
   const mainLinks = [
@@ -123,9 +124,9 @@ export default function Sidebar() {
         <ul className="flex flex-col border-b-2 border-gray-700">
           {mainLinks.map(({ icon, name }) => {
             return (
-              <>
+              <div key={name + icon + "#"}>
                 <li
-                  key={name}
+                  key={name + "#"}
                   className={`pl-6 py-3 hover:bg-zinc-600 ${
                     name === "Home" ? "bg-slate-800" : ""
                   }`}>
@@ -134,60 +135,60 @@ export default function Sidebar() {
                     <span className="text-sm tracking-wider">{name}</span>
                   </a>
                 </li>
-              </>
+              </div>
             );
           })}
         </ul>
         <ul className="flex flex-col border-b-2 border-gray-700">
           {secondaryLinks.map(({ icon, name }) => {
             return (
-              <>
-                <li key={name} className={`pl-6 py-3 hover:bg-zinc-600`}>
+              <div key={name + icon + "#"}>
+                <li key={name + "#"} className={`pl-6 py-3 hover:bg-zinc-600`}>
                   <a href="#" className="flex items-center gap-5">
                     {icon}
                     <span className="text-sm tracking-wider">{name}</span>
                   </a>
                 </li>
-              </>
+              </div>
             );
           })}
         </ul>
         <ul className="flex flex-col border-b-2 border-gray-700">
           {subscriptionLinks.map(({ icon, name }) => {
             return (
-              <>
-                <li key={name} className={`pl-6 py-3 hover:bg-zinc-600`}>
+              <div key={name + icon + "#"}>
+                <li key={name + "#"} className={`pl-6 py-3 hover:bg-zinc-600`}>
                   <a href="#" className="flex items-center gap-5">
                     {icon}
                     <span className="text-sm tracking-wider">{name}</span>
                   </a>
                 </li>
-              </>
+              </div>
             );
           })}
         </ul>
         <ul className="flex flex-col border-b-2 border-gray-700">
           {helpLinks.map(({ icon, name }) => {
             return (
-              <>
-                <li key={name} className={`pl-6 py-3 hover:bg-zinc-600`}>
+              <div key={name + icon}>
+                <li key={name + "#"} className={`pl-6 py-3 hover:bg-zinc-600`}>
                   <a href="#" className="flex items-center gap-5">
                     {icon}
                     <span className="text-sm tracking-wider">{name}</span>
                   </a>
                 </li>
-              </>
+              </div>
             );
           })}
         </ul>
         <ul className="flex gap-2 flex-wrap text-sm p-4 text-zinc-400">
           {textLinks[0].map((name) => {
-            return <li key={name}>{name}</li>;
+            return <li key={name + "#"}>{name}</li>;
           })}
         </ul>
         <ul className="flex gap-2 flex-wrap text-sm p-4 text-zinc-400">
           {textLinks[1].map((name) => {
-            return <li key={name}>{name}</li>;
+            return <li key={name + "#"}>{name}</li>;
           })}
         </ul>
         <span className="px-4 text-sm text-zinc-400">&copy; 2022 Google</span>

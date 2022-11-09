@@ -4,6 +4,11 @@ import Navbar from '../components/Navbar';
 import Sidebar from '../components/Sidebar';
 import { useAppDispatch, useAppSelector } from '../store/hooks';
 import { getHomePageVideos } from '../store/reducers/getHomePageVideos';
+import { v4 as uuidv4 } from "uuid";
+
+interface uuid {
+    uuidv4(): string;
+}
 
 export default function Home() {
     const dispatch = useAppDispatch();
