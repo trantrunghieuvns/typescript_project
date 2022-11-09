@@ -1,21 +1,22 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
+import { current } from '@reduxjs/toolkit';
 import React, { useEffect } from 'react'
 import Navbar from '../components/Navbar';
 import Sidebar from '../components/Sidebar';
 import { useAppDispatch, useAppSelector } from '../store/hooks';
-import { getHomePageVideos } from '../store/reducers/getHomePageVideos';
-import { v4 as uuidv4 } from "uuid";
-
-interface uuid {
-    uuidv4(): string;
-}
+import { getHomePageVideos } from '../store/reducers/fetchHomePageVideos';
 
 export default function Home() {
     const dispatch = useAppDispatch();
-    const videos = useAppSelector((state) => state.youtubeApp.videos);
+    const videos = useAppSelector((state) =>
+        state.youtubeApp.videos
+
+    );
+
 
     useEffect(() => {
-        dispatch(getHomePageVideos(false))
+        dispatch(getHomePageVideos(false));
+
     }, [dispatch])
 
     return (

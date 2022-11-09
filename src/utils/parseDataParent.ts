@@ -1,9 +1,9 @@
 import axios from "axios";
-import { YOUTUBE_API_URL } from "./constants";
+import { YOUTUBE_API_URL } from "./constantsApi";
 import { HomePageVideos } from "../Types";
 import { parseVideoDuration } from "./parseVideoDuration";
-import { convertRawViewsToString } from "./convertRawViewsToString";
 import { timeSince } from "./timeSince";
+import { convertRawViewsToString } from "./convertRawViewsToString";
 
 const API_KEY = process.env.REACT_APP_YOUTUBE_DATA_API_KEY;
 
@@ -45,7 +45,9 @@ export const parseData = async (items: any[]) => {
                 ","
             )}&key=${API_KEY}`
         );
+
         const parsedData: HomePageVideos[] = [];
+
         items.forEach(
             (
                 item: {
@@ -61,10 +63,15 @@ export const parseData = async (items: any[]) => {
                 },
                 index: number
             ) => {
+
+                // finding avt of channels
                 const { image: channelImage } = parsedChannelsData.find(
-                    (data) => data.id === item.snippet.channelId
-                )!;
-                if (channelImage)
+                    (x) => x.id === item.snippet.channelId
+                );
+
+                // means x.(has id matched) === channelImage >> then execute below code
+
+                if (channelImage) {
                     parsedData.push({
                         videoId: item.id.videoId,
                         videoTitle: item.snippet.title,
@@ -84,9 +91,10 @@ export const parseData = async (items: any[]) => {
                             name: item.snippet.channelTitle,
                         },
                     });
+                }
             }
         );
-
+        console.log('parsedData', parsedData)
         return parsedData;
     } catch (err) {
         console.log(err);
