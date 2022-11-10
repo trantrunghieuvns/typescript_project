@@ -94,7 +94,7 @@ export const parseData = async (items: any[]) => {
                 }
             }
         );
-        console.log('parsedData', parsedData)
+
         return parsedData;
     } catch (err) {
         console.log(err);

@@ -24,5 +24,6 @@ export const getHomePageVideos = createAsyncThunk(
         const parsedData: HomePageVideos[] = await parseData(items);
 
         return { parsedData: [...parsedData], nextPageToken };
+
     }
 );
