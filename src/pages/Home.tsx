@@ -14,14 +14,13 @@ export default function Home() {
     const dispatch = useAppDispatch();
     const videos = useAppSelector((state) =>
         state.youtubeApp.videos
-
     );
 
     useEffect(() => {
         dispatch(getHomePageVideos(false));
     }, [dispatch])
 
-    console.log('videos', videos);
+
     return (
         <div className='max-h-screen overflow-hidden'>
             <div style={{ height: '7.5vh' }}>

@@ -22,7 +22,7 @@ export const getHomePageVideos = createAsyncThunk(
         );
 
         const parsedData: HomePageVideos[] = await parseData(items);
-
+        console.log('xxxx', [...parsedData])
         return { parsedData: [...parsedData], nextPageToken };
 
     }
