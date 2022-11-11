@@ -120,7 +120,7 @@ export default function Sidebar() {
   ];
   return (
     <>
-      <div className="mt-4 w-5/12 bg-[#212121] pr-5 overflow-auto pb-8 sidebar">
+      <div className="mt-4 w-8/12 bg-[#212121] overflow-auto pb-8 sidebar  ">
         <ul className="flex flex-col border-b-2 border-gray-700">
           {mainLinks.map(({ icon, name }) => {
             return (
@@ -129,8 +129,8 @@ export default function Sidebar() {
                   key={name + "#"}
                   className={`pl-6 py-3 hover:bg-zinc-600 ${name === "Home" ? "bg-slate-800" : ""
                     }`}>
-                  <a href="#" className="flex items-center gap-5">
-                    {icon}
+                  <a href="#" className="flex items-center gap-5 ">
+                    <span className='su:hidden lg:block'>{icon}</span>
                     <span className="text-sm tracking-wider">{name}</span>
                   </a>
                 </li>
@@ -143,8 +143,8 @@ export default function Sidebar() {
             return (
               <div key={name + icon + "#"}>
                 <li key={name + "#"} className={`pl-6 py-3 hover:bg-zinc-600`}>
-                  <a href="#" className="flex items-center gap-5">
-                    {icon}
+                  <a href="#" className="flex items-center gap-5 ">
+                    <span className='su:hidden lg:block'>{icon}</span>
                     <span className="text-sm tracking-wider">{name}</span>
                   </a>
                 </li>
@@ -157,8 +157,8 @@ export default function Sidebar() {
             return (
               <div key={name + icon + "#"}>
                 <li key={name + "#"} className={`pl-6 py-3 hover:bg-zinc-600`}>
-                  <a href="#" className="flex items-center gap-5">
-                    {icon}
+                  <a href="#" className="flex items-center gap-5 ">
+                    <span className='su:hidden lg:block'>{icon}</span>
                     <span className="text-sm tracking-wider">{name}</span>
                   </a>
                 </li>
@@ -170,9 +170,9 @@ export default function Sidebar() {
           {helpLinks.map(({ icon, name }) => {
             return (
               <div key={name + icon}>
-                <li key={name + "#"} className={`pl-6 py-3 hover:bg-zinc-600`}>
-                  <a href="#" className="flex items-center gap-5">
-                    {icon}
+                <li key={name + "#"} className={`line-clamp-2 pl-6 py-3 hover:bg-zinc-600`}>
+                  <a href="#" className="flex items-center gap-5 ">
+                    <span className='su:hidden lg:block'>{icon}</span>
                     <span className="text-sm tracking-wider">{name}</span>
                   </a>
                 </li>
