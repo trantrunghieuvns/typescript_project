@@ -1,3 +1,5 @@
+import { Key } from "react";
+
 export interface InitialState {
     videos: HomePageVideos[];
     currentPlaying: CurrentPlaying | null;
@@ -9,6 +11,7 @@ export interface InitialState {
 }
 
 export interface HomePageVideos {
+    index: Key;
     videoId: string;
     videoTitle: string;
     videoDescription: string;

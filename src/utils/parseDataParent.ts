@@ -4,6 +4,7 @@ import { HomePageVideos } from "../Types";
 import { parseVideoDuration } from "./parseVideoDuration";
 import { timeSince } from "./timeSince";
 import { convertRawViewsToString } from "./convertRawViewsToString";
+import { Key } from "react";
 
 const API_KEY = process.env.REACT_APP_YOUTUBE_DATA_API_KEY;
 
@@ -51,6 +52,7 @@ export const parseData = async (items: any[]) => {
         items.forEach(
             (
                 item: {
+                    index: Key;
                     snippet: {
                         channelId: string;
                         title: string;
@@ -90,7 +92,8 @@ export const parseData = async (items: any[]) => {
                             image: channelImage,
                             name: item.snippet.channelTitle,
                         },
-                        loading: false
+                        loading: false,
+                        index: item.index,
                     });
                 }
             }
