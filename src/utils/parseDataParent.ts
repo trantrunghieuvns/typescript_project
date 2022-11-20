@@ -90,6 +90,7 @@ export const parseData = async (items: any[]) => {
                             image: channelImage,
                             name: item.snippet.channelTitle,
                         },
+                        loading: false
                     });
                 }
             }

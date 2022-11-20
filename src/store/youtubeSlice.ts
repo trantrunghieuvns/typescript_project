@@ -14,6 +14,7 @@ export const initialState: InitialState = {
     searchResult: [],
     nextPageToken: null,
     recommendedVideos: [],
+    loading: true
 }
 
 const API_KEY = process.env.REACT_APP_YOUTUBE_DATA_API_KEY;
@@ -44,11 +45,14 @@ export const youtubeSlice = createSlice(
         initialState,
         reducers: {},
         extraReducers: ((builder) => {
-
-            builder.addCase(getHomePageVideos.fulfilled, (state, action) => {
-                state.videos = action.payload.parsedData;
-                state.nextPageToken = action.payload.nextPageToken;
-            });
+            builder
+                .addCase(getHomePageVideos.fulfilled, (state, action) => {
+                    state.videos = action.payload.parsedData;
+                    state.nextPageToken = action.payload.nextPageToken;
+                })
+                .addCase(getHomePageVideos.pending, (state, action) => {
+                    state.loading = true
+                });
         })
     }
 )

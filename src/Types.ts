@@ -5,7 +5,7 @@ export interface InitialState {
     searchResult: [];
     nextPageToken: string | null;
     recommendedVideos: RecommendedVideos[];
-
+    loading: boolean;
 }
 
 export interface HomePageVideos {
@@ -22,6 +22,7 @@ export interface HomePageVideos {
         name: string;
     }
     videoThumbnail: string;
+    loading: boolean;
 }
 export interface CurrentPlaying { }
 export interface RecommendedVideos { }

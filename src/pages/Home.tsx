@@ -15,6 +15,9 @@ export default function Home() {
     const videos = useAppSelector((state) =>
         state.youtubeApp.videos
     );
+    const isLoading = useAppSelector((state) =>
+        state.youtubeApp.loading
+    );
 
     useEffect(() => {
         dispatch(getHomePageVideos(false))
@@ -25,12 +28,11 @@ export default function Home() {
             <div>
                 <Navbar />
             </div>
+            <div className="flex h-[95vw]">
 
-            <div className="flex h-[95%]">
-                <Sidebar />
-
-                {videos.length ? (
+                {!isLoading ? (<Spinner />) : (
                     <>
+                        {videos.length > 0 ? (<Sidebar />) : (null)}
                         <InfiniteScroll //spinner condition
                             dataLength={videos.length}
                             next={() => { dispatch(getHomePageVideos(true)) }}
@@ -45,7 +47,9 @@ export default function Home() {
                             </div>
                         </InfiniteScroll>
                     </>
-                ) : (<Spinner />)}
+                )}
+
+
             </div>
         </div>
     )
