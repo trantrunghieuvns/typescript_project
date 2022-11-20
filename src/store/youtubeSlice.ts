@@ -21,7 +21,6 @@ export const youtubeSlice = createSlice(
             builder.addCase(getHomePageVideos.fulfilled, (state, action) => {
                 state.videos = action.payload.parsedData;
                 state.nextPageToken = action.payload.nextPageToken;
-
             });
 
             // builder.addCase(getSearchPageVideos.fulfilled, (state, action) => {
