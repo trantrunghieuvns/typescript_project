@@ -1,6 +1,11 @@
-import { createSlice, current } from "@reduxjs/toolkit";
-import { InitialState } from "../Types";
-import { getHomePageVideos } from './reducers/fetchHomePageVideos';
+import { createSlice } from "@reduxjs/toolkit";
+import { HomePageVideos, InitialState } from "../Types";
+import { createAsyncThunk } from "@reduxjs/toolkit";
+import axios from "axios";
+import { YOUTUBE_API_URL } from "../utils/constantsApi";
+import { parseData } from "../utils/parseDataParent";
+import { RootState } from "./store";
+
 
 export const initialState: InitialState = {
     videos: [],
@@ -10,6 +15,28 @@ export const initialState: InitialState = {
     nextPageToken: null,
     recommendedVideos: [],
 }
+
+const API_KEY = process.env.REACT_APP_YOUTUBE_DATA_API_KEY;
+
+export const getHomePageVideos = createAsyncThunk(
+    "youtubeApp/homePageVideos",
+    async (isNext: boolean, { getState }) => {
+        const {
+            youtubeApp: { nextPageToken: nextPageTokenFromState, videos },
+        } = getState() as RootState;
+
+        const {
+            data: { items, nextPageToken },
+        } = await axios.get(
+            `${YOUTUBE_API_URL}/search?maxResults=20&q="reactjs projects"&key=${API_KEY}&part=snippet&type=video&${isNext ? `pageToken=${nextPageTokenFromState}` : ""
+            }`
+        );
+
+        const parsedData: HomePageVideos[] = await parseData(items);
+        console.log('xxxx', [...parsedData])
+        return { parsedData: [...videos, ...parsedData], nextPageToken };
+    }
+);
 
 export const youtubeSlice = createSlice(
     {
@@ -22,18 +49,6 @@ export const youtubeSlice = createSlice(
                 state.videos = action.payload.parsedData;
                 state.nextPageToken = action.payload.nextPageToken;
             });
-
-            // builder.addCase(getSearchPageVideos.fulfilled, (state, action) => {
-            //     state.videos = action.payload.parsedData;
-            //     state.nextPageToken = action.payload.nextPageToken;
-            // });
-            // builder.addCase(getVideoDetails.fulfilled, (state, action) => {
-            //     state.currentPlaying = action.payload;
-            // });
-            // builder.addCase(getRecommendedVideos.fulfilled, (state, action) => {
-            //     state.recommendedVideos = action.payload.parsedData;
-
-            // });
         })
     }
 )
