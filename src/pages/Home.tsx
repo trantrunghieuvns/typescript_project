@@ -7,7 +7,7 @@ import Spinner from '../components/Spinner';
 import { useAppDispatch, useAppSelector } from '../store/hooks';
 import { HomePageVideos } from '../Types';
 import '../index.css';
-import { clearVideos, getHomePageVideos } from '../store/youtubeSlice';
+import { clearSearchTerm, clearVideos, getHomePageVideos } from '../store/youtubeSlice';
 
 export default function Home() {
     const dispatch = useAppDispatch();
@@ -19,9 +19,8 @@ export default function Home() {
     );
 
     useEffect(() => {
-        return () => {
-            dispatch(clearVideos())
-        }
+        dispatch(clearSearchTerm())
+        dispatch(clearVideos())
     }, [dispatch])
 
     useEffect(() => {
@@ -33,8 +32,11 @@ export default function Home() {
             <div>
                 <Navbar />
             </div>
-            <div className="flex h-[95vh]">
-
+            <div className={
+                `spinnerFixCss flex h-[95vh] ${videos.length === 0 ? ("flex h-[100vh] justify-center items-center w-screen overflow:hidden") : null}
+            `
+            }
+            >
                 {!isLoading ? (<Spinner />) : (
                     <>
                         {videos.length > 0 ? (<Sidebar />) : (null)}

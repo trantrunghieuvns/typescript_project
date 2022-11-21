@@ -14,10 +14,14 @@ export default function Navbar() {
 
     const searchTerm = useAppSelector((state) => state.youtubeApp.searchTerm)
     const handleSearch = () => {
-        if (location.pathname !== '/search') navigate('/search');
+        if (location.pathname !== '/search') {
+            dispatch(clearVideos())
+            navigate('/search');
+            dispatch(getSearchPageVideos(false));
+        }
         else {
             dispatch(clearVideos())
-            dispatch(getSearchPageVideos(false))
+            dispatch(getSearchPageVideos(true))
         }
     }
 

@@ -29,7 +29,7 @@ export const getHomePageVideos = createAsyncThunk(
         const {
             data: { items, nextPageToken },
         } = await axios.get(
-            `${YOUTUBE_API_URL}/search?maxResults=20&q="reactjs projects"&key=${API_KEY}&part=snippet&type=video&${isNext ? `pageToken=${nextPageTokenFromState}` : ""
+            `${YOUTUBE_API_URL}/search?maxResults=10&q="reactjs projects"&key=${API_KEY}&part=snippet&type=video&${isNext ? `pageToken=${nextPageTokenFromState}` : ""
             }`
         );
         const parsedData: HomePageVideos[] = await parseData(items);
@@ -37,6 +37,7 @@ export const getHomePageVideos = createAsyncThunk(
         return { parsedData: [...videos, ...parsedData], nextPageToken };
     }
 );
+
 
 //search function 
 export const getSearchPageVideos = createAsyncThunk(
@@ -49,12 +50,11 @@ export const getSearchPageVideos = createAsyncThunk(
         const {
             data: { items, nextPageToken },
         } = await axios.get(
-            `${YOUTUBE_API_URL}/search?q=${{ searchTerm }}&key=${API_KEY}&part=snippet&type=video&${isNext ? `pageToken=${nextPageTokenFromState}` : ""
+            `${YOUTUBE_API_URL}/search?maxResults=10&q=${searchTerm}&key=${API_KEY}&part=snippet&type=video&${isNext ? `pageToken=${nextPageTokenFromState}` : ""
             }`
         );
-
-        const parsedData: HomePageVideos[] = await parseData(items);
-        return { parsedData: [...videos, ...parsedData], nextPageToken };
+        const parsedSearchData: HomePageVideos[] = await parseData(items);
+        return { parsedSearchData: [...videos, ...parsedSearchData], nextPageToken };
     }
 );
 
@@ -70,8 +70,6 @@ export const youtubeSlice = createSlice(
             },
             changeSearchTerm: (state, action: PayloadAction<string>) => {
                 state.searchTerm = action.payload;
-                state.searchOtherTerm = action.payload;
-                console.log('state.searchOtherTerm', state.searchOtherTerm)
             },
             clearSearchTerm: (state) => {
                 state.searchTerm = '';
@@ -85,7 +83,14 @@ export const youtubeSlice = createSlice(
                 })
                 .addCase(getHomePageVideos.pending, (state, action) => {
                     state.loading = true
-                });
+                })
+                .addCase(getSearchPageVideos.fulfilled, (state, action) => {
+                    state.videos = action.payload.parsedSearchData;
+                    state.nextPageToken = action.payload.nextPageToken;
+                })
+                .addCase(getSearchPageVideos.pending, (state, action) => {
+                    state.loading = true
+                })
         })
     }
 )

@@ -21,8 +21,10 @@ body {
     border-radius: 1rem;
 }
 
-.infinite-scroll-component__outerdiv {
+
+.infinite-scroll-component {
     margin-top: 1.5rem;
+    overflow: hidden
 }
 
 .sidebar {
