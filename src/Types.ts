@@ -1,6 +1,7 @@
 import { Key } from "react";
 
 export interface InitialState {
+    searchOtherTerm: string;
     videos: HomePageVideos[];
     currentPlaying: CurrentPlaying | null;
     searchTerm: string;
@@ -8,6 +9,7 @@ export interface InitialState {
     nextPageToken: string | null;
     recommendedVideos: RecommendedVideos[];
     loading: boolean;
+
 }
 
 export interface HomePageVideos {
@@ -26,6 +28,7 @@ export interface HomePageVideos {
     }
     videoThumbnail: string;
     loading: boolean;
+
 }
 export interface CurrentPlaying { }
 export interface RecommendedVideos { }

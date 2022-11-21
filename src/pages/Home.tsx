@@ -7,17 +7,22 @@ import Spinner from '../components/Spinner';
 import { useAppDispatch, useAppSelector } from '../store/hooks';
 import { HomePageVideos } from '../Types';
 import '../index.css';
-import { getHomePageVideos } from '../store/youtubeSlice';
+import { clearVideos, getHomePageVideos } from '../store/youtubeSlice';
 
 export default function Home() {
     const dispatch = useAppDispatch();
-
     const videos = useAppSelector((state) =>
         state.youtubeApp.videos
     );
     const isLoading = useAppSelector((state) =>
         state.youtubeApp.loading
     );
+
+    useEffect(() => {
+        return () => {
+            dispatch(clearVideos())
+        }
+    }, [dispatch])
 
     useEffect(() => {
         dispatch(getHomePageVideos(false))
