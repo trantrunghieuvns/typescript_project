@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import { useEffect } from 'react'
 import InfiniteScroll from 'react-infinite-scroll-component';
 import Card from '../components/Card';
 import Navbar from '../components/Navbar';
@@ -11,6 +11,9 @@ import { clearVideos, getSearchPageVideos } from '../store/youtubeSlice';
 import { useNavigate } from 'react-router-dom';
 
 export default function Search() {
+
+
+
     const navigate = useNavigate();
     const dispatch = useAppDispatch();
     const videos = useAppSelector((state) =>
@@ -23,18 +26,21 @@ export default function Search() {
     const isLoading = useAppSelector((state) =>
         state.youtubeApp.loading
     );
+
     //***********************  */
     useEffect(() => {
         if (searchTerm === '') {
             navigate('/')
+
         }
         else {
             dispatch(clearVideos())
             navigate('/search')
             dispatch(getSearchPageVideos(false))
+
         }
     }, [dispatch, navigate, searchTerm])
-
+    //***********************  */
     return (
         <div className='max-h-screen overflow-hidden'>
             <div>

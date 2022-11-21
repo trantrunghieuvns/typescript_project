@@ -93,7 +93,8 @@ export const parseData = async (items: any[]) => {
                             name: item.snippet.channelTitle,
                         },
                         loading: false,
-                        index: item.index,
+                        index: item.index
+
                     });
                 }
             }

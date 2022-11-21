@@ -13,11 +13,13 @@ export default function Navbar() {
     const dispatch = useAppDispatch()
 
     const searchTerm = useAppSelector((state) => state.youtubeApp.searchTerm)
+
     const handleSearch = () => {
         if (location.pathname !== '/search') {
             dispatch(clearVideos())
             navigate('/search');
-            dispatch(getSearchPageVideos(false));
+            dispatch(getSearchPageVideos(true));
+
         }
         else {
             dispatch(clearVideos())

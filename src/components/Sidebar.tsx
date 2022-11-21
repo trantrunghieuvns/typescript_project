@@ -120,7 +120,7 @@ export default function Sidebar() {
   ];
   return (
     <>
-      <div className="mt-4 sm:w-5/12 lg:w-8/12 md:w-8/12 bg-[#212121] overflow-auto pb-8 sidebar">
+      <div className="mt-4 sm:w-5/12 lg:w-8/12 md:w-4/12 bg-[#212121] overflow-auto pb-8 sidebar">
         <ul className="flex flex-col border-b-2 border-gray-700">
           {mainLinks.map(({ icon, name }) => {
             return (

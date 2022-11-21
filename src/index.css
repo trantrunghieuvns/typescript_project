@@ -24,7 +24,7 @@ body {
 
 .infinite-scroll-component {
     margin-top: 1.5rem;
-    overflow: hidden
+    height: 100% !important;
 }
 
 .sidebar {
