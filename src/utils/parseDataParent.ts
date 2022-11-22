@@ -28,6 +28,7 @@ export const parseData = async (items: any[]) => {
         );
 
         const parsedChannelsData: { id: string; image: string }[] = [];
+
         channelsData.forEach(
             (channel: {
                 id: string;
@@ -57,7 +58,7 @@ export const parseData = async (items: any[]) => {
                         channelId: string;
                         title: string;
                         description: string;
-                        thumbnails: { medium: { url: string } };
+                        thumbnails: { high: { url: string } };
                         publishedAt: Date;
                         channelTitle: string;
                     };
@@ -78,7 +79,7 @@ export const parseData = async (items: any[]) => {
                         videoId: item.id.videoId,
                         videoTitle: item.snippet.title,
                         videoDescription: item.snippet.description,
-                        videoThumbnail: item.snippet.thumbnails.medium.url,
+                        videoThumbnail: item.snippet.thumbnails.high.url,
                         videoLink: `https://www.youtube.com/watch?v=${item.id.videoId}`,
                         videoDuration: parseVideoDuration(
                             videosData[index].contentDetails.duration

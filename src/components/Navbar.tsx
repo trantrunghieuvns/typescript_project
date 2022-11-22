@@ -28,13 +28,14 @@ export default function Navbar() {
     }
 
     return (
-        <div className="sticky-navbar flex justify-between items-center px-14 h-14 bg-[#3e3e3e] opacity-95 sticky top-0 z-50">
-            <div className="flex gap-2 items-center text-2xl">
-                <div><GiHamburgerMenu /></div>
+        <div className="sticky-navbar flex justify-between items-center px-14 h-14 bg-[#3e3e3e] opacity-95 sticky top-0 z-50 w-[100%] ">
+
+            <div className="flex w-[30%] gap-2 items-center text-2xl ">
+                <div className='su:-mx-8 sm:mx-2'><GiHamburgerMenu /></div>
                 <Link to='/' >
-                    <div className="logo-youtube flex gap-1 items-center justify-center su:mx-[10px] ">
-                        <BsYoutube className='sm:text-xl lg:text-2xl xl:text-3xl text-red-600'></BsYoutube>
-                        <span className='lg:text-xl sm:text-sm text-center justify-center mb-1 font-bold text-white/80 su:hidden  md:block'>Youtube</span>
+                    <div className="logo-youtube flex gap-1 items-center justify-center su:hidden md:flex ">
+                        <BsYoutube className='sm:text-3xl text-red-600'></BsYoutube>
+                        <span className='lg:text-xl sm:text-sm text-center justify-center mb-1 font-bold text-white/80 su:hidden md:hidden lg:flex'>Youtube</span>
                     </div>
                 </Link >
             </div>
@@ -45,7 +46,7 @@ export default function Navbar() {
                     handleSearch()
                 }}>
                     <div className="flex bg-zinc-900 items-center h-10 px-4 pr-0">
-                        <div className="flex gap-4 items-center pr-5">
+                        <div className="flex gap-[40px] items-center pr-5">
                             <div>
                                 <AiOutlineSearch className='text-xl' />
                             </div>
@@ -60,7 +61,7 @@ export default function Navbar() {
                             />
                             <AiOutlineClose
                                 onClick={() => dispatch(clearSearchTerm())}
-                                className={`text-xl cursor-pointer ${!searchTerm ? 'hidden' : 'block'}`
+                                className={`right-3 text-xl cursor-pointer ${!searchTerm ? 'hidden' : 'block'}`
                                 }
                             />
                         </div>
@@ -86,7 +87,7 @@ export default function Navbar() {
                 <img
                     src='https://img-prod-cms-rt-microsoft-com.akamaized.net/cms/api/am/imageFileData/RE4wqHN?ver=f541'
                     alt='logo'
-                    className='w-9 h-9 rounded-full'
+                    className='w-9 h-9 rounded-full su:hidden sm:block'
                 />
             </div>
         </div>

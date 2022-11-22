@@ -120,7 +120,7 @@ export default function Sidebar() {
   ];
   return (
     <>
-      <div className="mt-4 sm:w-5/12 lg:w-8/12 md:w-4/12 bg-[#212121] overflow-auto pb-8 sidebar">
+      <div className="mt-4 lg:w-10/12 md:w-12/1 w-8/12 bg-[#212121] hover:overflow-auto pb-8 sidebar">
         <ul className="flex flex-col border-b-2 border-gray-700">
           {mainLinks.map(({ icon, name }) => {
             return (
@@ -130,8 +130,8 @@ export default function Sidebar() {
                   className={`pl-6 py-3 hover:bg-zinc-600 ${name === "Home" ? "bg-slate-800" : ""
                     }`}>
                   <a href="#" className="flex items-center gap-5 ">
-                    <span className={`su:hidden ${name === 'Subscriptions' ? ('break-all') : (null)} lg:hidden xl:block sm:block `}>{icon}</span>
-                    <span className="text-sm lg:block sm:hidden tracking-wider">{name}</span>
+                    <span className='su:block md:block lg:block xl:block'>{icon}</span>
+                    <span className="text-sm md:hidden lg:block sm:hidden su:hidden  tracking-wider">{name}</span>
                   </a>
                 </li>
               </div>
@@ -144,8 +144,8 @@ export default function Sidebar() {
               <div key={name + icon + "#"}>
                 <li key={name + "#"} className={`pl-6 py-3 hover:bg-zinc-600`}>
                   <a href="#" className="flex items-center gap-5 ">
-                    <span className='su:hidden sm:block lg:hidden xl:block'>{icon}</span>
-                    <span className="text-sm lg:block sm:hidden tracking-wider">{name}</span>
+                    <span className='su:block md:block lg:block xl:block'>{icon}</span>
+                    <span className="text-sm md:hidden lg:block sm:hidden su:hidden  tracking-wider">{name}</span>
                   </a>
                 </li>
               </div>
@@ -158,8 +158,8 @@ export default function Sidebar() {
               <div key={name + icon + "#"}>
                 <li key={name + "#"} className={`pl-6 py-3 hover:bg-zinc-600`}>
                   <a href="#" className="flex items-center gap-5 ">
-                    <span className='su:hidden sm:block lg:hidden xl:block'>{icon}</span>
-                    <span className="text-sm lg:block sm:hidden tracking-wider">{name}</span>
+                    <span className='su:block md:block lg:block xl:block'>{icon}</span>
+                    <span className="text-sm md:hidden lg:block sm:hidden su:hidden  tracking-wider">{name}</span>
                   </a>
                 </li>
               </div>
@@ -172,8 +172,8 @@ export default function Sidebar() {
               <div key={name + icon}>
                 <li key={name + "#"} className={`line-clamp-2 pl-6 py-3 hover:bg-zinc-600`}>
                   <a href="#" className="flex items-center gap-5 ">
-                    <span className='su:hidden sm:block lg:hidden xl:block'>{icon}</span>
-                    <span className="text-sm lg:block  sm:hidden tracking-wider">{name}</span>
+                    <span className='su:block md:block lg:block xl:block'>{icon}</span>
+                    <span className="text-sm md:hidden lg:block sm:hidden su:hidden  tracking-wider">{name}</span>
                   </a>
                 </li>
               </div>

@@ -1,18 +1,10 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
-import { useAppSelector } from '../store/hooks';
 import { HomePageVideos } from '../Types';
 
 function Card({ data }: { data: HomePageVideos }) {
-
-    const searchTerm = useAppSelector((state) =>
-        state.youtubeApp.searchTerm
-    );
-    console.log('searchTerm :>> ', searchTerm);
-
     return (
-
-        <div className="flex gap-4 flex-col gap-y-3.5" key={data.videoId + data.videoTitle}>
+        <div className="flex gap-4 flex-col gap-y-3.5" key={data.index}>
             <div className="relative  bg-gray-800">
                 <span className="absolute bottom-3 right-3 text-sm bg-gray-900 px-2 py-0.5 z-10">
                     {data.videoDuration}
